@@ -4,8 +4,7 @@ import requests
 import pandas as pd
 
 def retrieve(url):
-    file = "https://lager.emilfolino.se/v2/products/everything"
-    response = requests.get(file)
+    response = requests.get(url)
     products_dict = response.json()
     return products_dict
 
@@ -62,4 +61,4 @@ if __name__ == "__main__":
 
     datan = unique(df)
     x = search("Skruv M14", df)
-    print(x)
+    
