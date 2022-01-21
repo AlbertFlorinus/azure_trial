@@ -21,3 +21,11 @@ def give_unique():
     data = core.retrieve(url)["data"]
     df, _ = core.main(data)
     return core.unique(df)
+
+@app.route("/search/<query>")
+def search_for(query):
+    #query.replace("_", "")
+    url = "https://lager.emilfolino.se/v2/products/everything"
+    data = core.retrieve(url)["data"]
+    df,_ = core.main(data)
+    return core.search(query, df)
