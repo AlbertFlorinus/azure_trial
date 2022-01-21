@@ -6,7 +6,6 @@ def retrieve(url):
     products_dict = response.json()
     return products_dict
 
-
 def main(data):
     df = pd.DataFrame(data)
     df["name"] = df["name"].str.strip()
@@ -56,5 +55,6 @@ if __name__ == "__main__":
     df, error_col = main(data)
 
     datan = unique(df)
+    print(df)
     x = search("Skruv M14", df)
     
