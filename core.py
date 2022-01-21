@@ -20,7 +20,6 @@ def main(data):
     for i in data:
         naming = i["name"].strip()
         try:
-
             if i["stock"] is None:
                 i["stock"] = 0
 
