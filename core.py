@@ -1,5 +1,3 @@
-from http import server
-from pickletools import float8
 import requests
 import pandas as pd
 
@@ -49,7 +47,6 @@ def search(keyword, df):
     y = dict(x.transpose())
     output = {"data": [dict(i) for i in y.values()]}
     return output
-
 
 if __name__ == "__main__":
 

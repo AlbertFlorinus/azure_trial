@@ -1,6 +1,5 @@
 from flask import Flask
 from markupsafe import escape
-
 import core
 
 url = "https://lager.emilfolino.se/v2/products/everything"
@@ -9,11 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return "Hello World!"
-
-@app.route("/dynamic/<name>")
-def dynamic(name):
-    return f"Hello {escape(name)}"
+    return "Hello"
 
 @app.route("/unique")
 def give_unique():
@@ -24,8 +19,8 @@ def give_unique():
 
 @app.route("/search/<query>")
 def search_for(query):
-    #query.replace("_", "")
     url = "https://lager.emilfolino.se/v2/products/everything"
     data = core.retrieve(url)["data"]
     df,_ = core.main(data)
+    query = query.replace("_", " ")
     return core.search(query, df)
