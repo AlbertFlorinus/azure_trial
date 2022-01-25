@@ -55,6 +55,6 @@ if __name__ == "__main__":
     df, error_col = main(data)
 
     datan = unique(df)
-    print(df)
-    x = search("Skruv M14", df)
+    print(datan)
+    #x = search("Skruv M14", df)
     
