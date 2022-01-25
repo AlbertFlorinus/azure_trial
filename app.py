@@ -16,7 +16,7 @@ def give_unique():
     url = "https://lager.emilfolino.se/v2/products/everything"
     data = core.retrieve(url)["data"]
     df, _ = core.main(data)
-    return jsonify(core.unq(df))
+    return jsonify(core.unique(df))
     #return str(core.unique(df))
 
 @app.route("/search/<query>")
