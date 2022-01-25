@@ -62,4 +62,5 @@ jobs:
         with:
           app-name: 'lagerkoll'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5FB7073C467942FAB7189A0C1124C834 }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+AZURE_WEBAPP_PUBLISH_PROFILE
