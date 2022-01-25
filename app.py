@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from markupsafe import escape
 import core
 
@@ -15,7 +15,8 @@ def give_unique():
     url = "https://lager.emilfolino.se/v2/products/everything"
     data = core.retrieve(url)["data"]
     df, _ = core.main(data)
-    return str(core.unique(df))
+    return jsonify(core.unique(df))
+    #return str(core.unique(df))
 
 @app.route("/search/<query>")
 def search_for(query):
@@ -23,4 +24,5 @@ def search_for(query):
     data = core.retrieve(url)["data"]
     df,_ = core.main(data)
     query = query.replace("_", " ")
-    return str(core.search(query, df))
+    return jsonify(core.search(query, df))
+    #return str(core.search(query, df))
