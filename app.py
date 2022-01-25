@@ -1,5 +1,4 @@
 from flask import Flask, jsonify
-from itsdangerous import json
 from markupsafe import escape
 import core
 
