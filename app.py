@@ -2,6 +2,7 @@ from flask import Flask, jsonify, render_template
 import core
 import requests
 import sys
+import os
 app = Flask(__name__)
 
 global data_source
@@ -44,5 +45,5 @@ def search_for(query):
 
 if __name__ == "__main__":
     global key
-    key = sys.argv[0]
+    key = os.environ["API_KEY"]
     app.run()
