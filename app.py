@@ -17,7 +17,11 @@ def hello_world():
             return render_template("backup_lander.html")
         except:
             return render_template("final_backup.html")
-            
+
+@app.route("/landertest")
+def hello_world2():
+    return render_template("lander.html")
+
 @app.route("/unique")
 def give_unique():
     df, _ = core.main(data_source)
@@ -51,5 +55,8 @@ def search_for(query):
 
 if __name__ == "__main__":
     global key
-    key = os.environ["API_KEY"]
+    try:
+        key = os.environ["API_KEY"]
+    except:
+        key = "123"
     app.run()
