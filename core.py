@@ -1,16 +1,29 @@
 import requests
 import pandas as pd
 
-def retrieve(url):
-    response = requests.get(url)
-    products_dict = response.json()
-    return products_dict
+def img_search(url, key):
+    api = 'https://dv1615-apimanagement-lab.azure-api.net/vision/v2.0/analyze?visualFeatures=Tags'
+    body = {"url": url}
+    headers = {'Ocp-Apim-Subscription-Key': key}
+    response = requests.post(api, headers =headers, json=body)
+    return response
+
+def img_to_text(img_resp, key):
+    api = "https://dv1615-apimanagement-lab.azure-api.net/translate?api-version=3.0&from=en&to=sv"
+    body = [{"text": i["name"]} for i in img_resp]
+    headers = {'Ocp-Apim-Subscription-Key': key}
+    response = requests.post(api, headers=headers, json = body).json()
+
+    results = [i["translations"][0]["text"] for i in response]+[i["name"] for i in img_resp]
+    return results
 
 def main(data):
+    """
+    drops invalid rows and returns the corrected df and error df
+    """
     df = pd.DataFrame(data)
     df["name"] = df["name"].str.strip()
     
-    #total_amount = {i.strip(): 0 for i in set(df["name"])}
     total_amount = {i:0 for i in set(df["name"])}
     error_col = []
 
@@ -47,14 +60,4 @@ def search(keyword, df):
     output = {"data": [dict(i) for i in y.values()]}
     return output
 
-if __name__ == "__main__":
-
-    url = "https://lager.emilfolino.se/v2/products/everything"
-
-    data = retrieve(url)["data"]
-    df, error_col = main(data)
-
-    datan = unique(df)
-    print(datan)
-    #x = search("Skruv M14", df)
     
