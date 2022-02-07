@@ -47,7 +47,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
+      API_KEY: ${{ secrets.API_KEY}}
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
