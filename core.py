@@ -59,5 +59,3 @@ def search(keyword, df):
     y = dict(x.transpose())
     output = {"data": [dict(i) for i in y.values()]}
     return output
-
-    

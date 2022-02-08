@@ -13,14 +13,15 @@ def hello_world():
     try:
         return render_template("lander.html")
     except:
-        try:
-            return render_template("backup_lander.html")
-        except:
-            return render_template("final_backup.html")
+        return sys.version_info
 
-@app.route("/landertest")
-def hello_world2():
-    return render_template("lander.html")
+@app.route("/debug")
+def test_data():
+    return data_source
+
+@app.route("/tester")
+def why_not():
+    return "not working"
 
 @app.route("/unique")
 def give_unique():
@@ -55,8 +56,5 @@ def search_for(query):
 
 if __name__ == "__main__":
     global key
-    try:
-        key = os.environ["API_KEY"]
-    except:
-        key = "123"
+    key = os.environ["API_KEY"]
     app.run()
