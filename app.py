@@ -19,6 +19,10 @@ def hello_world():
 def test_data():
     return data_source
 
+@app.route("/tester")
+def why_not():
+    return "not working"
+
 @app.route("/unique")
 def give_unique():
     df, _ = core.main(data_source)
