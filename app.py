@@ -55,5 +55,4 @@ def search_for(query):
 if __name__ == "__main__":
     global key
     key = os.environ["API_KEY"]
-    #key = "123"
     app.run()
