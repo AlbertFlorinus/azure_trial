@@ -7,7 +7,7 @@ name: Build and deploy Python app to Azure Web App - supplycheck
 on:
   push:
     branches:
-      - test_fix
+      - legacy
   workflow_dispatch:
 
 jobs:
