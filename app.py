@@ -12,9 +12,13 @@ data_source = requests.get("https://lagerkollen.azurewebsites.net/v2/products/ev
 def hello_world():
     try:
         return render_template("lander.html")
-    except Exception as ex:
-        return ex
-        
+    except:
+        return sys.version_info
+
+@app.route("/debug")
+def test_data():
+    return data_source
+
 @app.route("/unique")
 def give_unique():
     df, _ = core.main(data_source)
