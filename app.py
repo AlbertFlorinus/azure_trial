@@ -10,10 +10,8 @@ data_source = requests.get("https://lagerkollen.azurewebsites.net/v2/products/ev
 
 @app.route("/")
 def hello_world():
-    try:
-        return render_template("lander.html")
-    except:
-        return sys.version_info
+    return render_template("backup.html")
+    #return render_template("lander.html")
 
 @app.route("/debug")
 def test_data():
@@ -57,4 +55,5 @@ def search_for(query):
 if __name__ == "__main__":
     global key
     key = os.environ["API_KEY"]
+    #key = "123"
     app.run()
