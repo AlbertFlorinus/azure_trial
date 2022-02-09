@@ -23,7 +23,8 @@ def give_unique():
 def imsearch(path):
     df, _ = core.main(data_source)
     predictions = core.img_search(path, key)
-    if predictions.status_code == 200:
+    #if predictions.status_code == 200:
+    try:
         predictions = predictions.json()["tags"]
         product_classes = core.img_to_text(predictions, key)
         df = df.copy().iloc[:,[2,5]]
@@ -36,8 +37,10 @@ def imsearch(path):
                 output["data"] += part_search
         output["keywords"] = product_classes
         return jsonify(output)
-    else:
+    except:
         return predictions.json()["message"]
+    #else:
+        #return predictions.json()["message"]
 
 @app.route("/search/<query>")
 def search_for(query):
