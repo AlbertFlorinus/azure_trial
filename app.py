@@ -42,7 +42,7 @@ def imsearch(path):
     else:
         return predictions.json()["message"]
 
-@app.route("/search/(<query>)")
+@app.route("/search/<query>")
 def search_for(query):
     df,_ = core.main(data_source)
     query = query.replace("_", " ")
