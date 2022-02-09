@@ -32,7 +32,13 @@ def imsearch(path):
                 part_search = [i for i in y.values()]
                 output["data"] += part_search
         output["keywords"] = product_classes
-        return jsonify(output)
+        try:
+            return jsonify(output)
+        except:
+            try:
+                return output
+            except:
+                return str(output)
     else:
         return predictions.json()["message"]
 
