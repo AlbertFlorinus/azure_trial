@@ -4,6 +4,9 @@ import requests
 import os
 app = Flask(__name__)
 
+global key
+key = os.environ["API_KEY"]
+
 global data_source
 data_source = requests.get("https://lagerkollen.azurewebsites.net/v2/products/everything").json()["data"]
 
@@ -49,6 +52,4 @@ def search_for(query):
     return jsonify(core.search(query, df))
 
 if __name__ == "__main__":
-    global key
-    key = os.environ["API_KEY"]
     app.run()
