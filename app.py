@@ -1,7 +1,6 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 import core
 import requests
-import sys
 import os
 app = Flask(__name__)
 
@@ -10,16 +9,7 @@ data_source = requests.get("https://lagerkollen.azurewebsites.net/v2/products/ev
 
 @app.route("/")
 def hello_world():
-    return render_template("backup.html")
-    #return render_template("lander.html")
-
-@app.route("/debug")
-def test_data():
-    return data_source
-
-@app.route("/tester")
-def why_not():
-    return "not working"
+    return render_template("lander.html")
 
 @app.route("/unique")
 def give_unique():
@@ -46,7 +36,7 @@ def imsearch(path):
     else:
         return predictions.json()["message"]
 
-@app.route("/search/<query>")
+@app.route("/search/(<query>)")
 def search_for(query):
     df,_ = core.main(data_source)
     query = query.replace("_", " ")
